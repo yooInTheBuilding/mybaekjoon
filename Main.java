@@ -1,31 +1,35 @@
 package practice_alone;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.util.StringTokenizer;
 
 public class Main {
 
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 		StringTokenizer st;
 
-		int N = Integer.parseInt(br.readLine());
 		String s = br.readLine();
 		st = new StringTokenizer(s);
+		int N = Integer.parseInt(st.nextToken());
+		int X = Integer.parseInt(st.nextToken());
 		int[] arr = new int[N];
-		int sum = 0;
-		int check = Integer.parseInt(br.readLine());
+		String s2 = br.readLine();
+		st = new StringTokenizer(s2);
 		for (int i = 0; i < N; i++){
 			arr[i] = Integer.parseInt(st.nextToken());
 		}
-
-		for(int e = 0; e < N; e++){
-			if(arr[e] == check) {
-				sum++;
+		String result = "";
+		for (int i = 0; i < N; i++){
+			if (arr[i] < X){
+				result += arr[i] + " ";
 			}
 		}
-		System.out.println(sum);
-		}
+		bw.write(result);
+		bw.close();
+
+
+
 
 	}
+}
