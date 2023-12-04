@@ -1,37 +1,35 @@
 package practice_alone;
 
+import java.io.*;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import  java.io.IOException;
-import java.util.StringTokenizer;
 
 public class Main {
 
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 
-		int N = Integer.parseInt(br.readLine());
-		String s1 = br.readLine();
-		StringTokenizer st;
-		st = new StringTokenizer(s1);
-		int[] arr1 = new int[N];
-
-		for (int i = 0; i < N; i++){
-			arr1[i] = Integer.parseInt(st.nextToken());
+		int[] arr1 = new int[9];
+		for (int i = 0; i < 9; i++){
+			arr1[i] = Integer.parseInt(br.readLine());
 		}
 		int max = arr1[0];
-		int min = arr1[0];
-		for(int i = 0; i < N; i++){
+		for (int i = 0; i < 9; i++){
 			if(max < arr1[i]){
 				max = arr1[i];
 			}
-			if(min > arr1[i]){
-				min = arr1[i];
+		}
+		int check = 0;
+		for (int i = 0; i < 9; i++){
+			if(max == arr1[i]){
+				check = i + 1;
 			}
 		}
+		bw.write(String.valueOf(max) + "\n");
+		bw.write(String.valueOf(check));
 
-		System.out.println(min + " " + max);
+		bw.close();
+		
 
 	}
 }
