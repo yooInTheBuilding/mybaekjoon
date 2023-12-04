@@ -5,30 +5,30 @@ import java.io.BufferedWriter;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.io.IOException;
+import java.util.StringTokenizer;
 
 public class Main {
 
 	public static void main(String[] args) throws IOException{
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
-		
-		int N = Integer.parseInt(br.readLine());
-		String s1 = "";
-		String s2 = "";
-		
-		
-		for(int i = 1; i <= N; i++) {
-			s1 += "*";
-			for(int j = 1; j <= N - i; j++) {
-				s2 += " ";
+		StringTokenizer st;
+		int a = 0;
+		int b = 0;
+		int i = 0;
+		int sum = 0;
+		while(i < 1){
+			st = new StringTokenizer(br.readLine());
+			a = Integer.parseInt(st.nextToken());
+			b = Integer.parseInt(st.nextToken());
+			if(a == 0 && b == 0){
+				i++;
+			}else {
+				sum = a + b;
+				bw.write(sum + "\n");
 			}
-			
-			bw.write(s2);
-			bw.write(s1 + "\n");
-			s2 = "";
 		}
 		bw.close();
-		
 	}
 
 }
