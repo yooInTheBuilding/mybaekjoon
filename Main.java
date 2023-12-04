@@ -13,11 +13,19 @@ public class Main {
 		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 		
 		int N = Integer.parseInt(br.readLine());
-		String s = "";
+		String s1 = "";
+		String s2 = "";
+		
 		
 		for(int i = 1; i <= N; i++) {
-			s += "*";
-			bw.write(s + "\n");
+			s1 += "*";
+			for(int j = 1; j <= N - i; j++) {
+				s2 += " ";
+			}
+			
+			bw.write(s2);
+			bw.write(s1 + "\n");
+			s2 = "";
 		}
 		bw.close();
 		
