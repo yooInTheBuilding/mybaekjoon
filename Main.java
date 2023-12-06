@@ -7,28 +7,33 @@ public class Main {
 
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		int N = Integer.parseInt(br.readLine());
-		String s1 = "";
-		for (int i = 1; i <= N; i++){
-			for (int j = 1; j <= N - i; j++){
-				s1 += " ";
-			}
-			for (int j = 1; j <= 2*i - 1; j++){
-				s1 += "*";
-			}
-			System.out.println(s1);
-			s1 = "";
+		String s1 = br.readLine();
+		char[] arr1 = new char[s1.length()];
+		boolean[] arr2 = new boolean[(arr1.length - (arr1.length % 2))/2];
+		int check = 0;
+		for (int i = 0; i < arr1.length; i++){
+			arr1[i] = s1.charAt(i);
 		}
-		for (int i = 1; i <= N - 1; i++){
-			for (int j = 1; j <= i; j++){
-				s1 += " ";
+		for (int i = 0; i < (arr1.length - (arr1.length % 2))/2; i++){
+			if(s1.charAt(i) == s1.charAt(arr1.length - 1 - i)){
+				arr2[i] = true;
+			}else {
+				arr2[i] = false;
 			}
-			for (int j = 1; j <= (2 * N - 1) - (2 * i); j++){
-				s1 += "*";
-			}
-			System.out.println(s1);
-			s1 = "";
 		}
+		for (int i = 0; i < arr2.length; i++){
+			if (!arr2[i]){
+				check++;
+			}
+		}
+		if (check == 0){
+			System.out.println(1);
+		}else {
+			System.out.println(0);
+		}
+
+
+
 
 	}
 
