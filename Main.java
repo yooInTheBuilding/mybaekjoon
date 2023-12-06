@@ -7,17 +7,13 @@ public class Main {
 
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		StringTokenizer st;
 
-		int T = Integer.parseInt(br.readLine());
+		char ch = br.readLine().charAt(0);
+		int var1 = (int)ch;
 
-		String[] arr1 = new String[T];
-		for (int i = 0; i < T; i++){
-			arr1[i] = br.readLine();
-		}
-		for (int i = 0; i < T; i++){
-			System.out.println(String.valueOf(arr1[i].charAt(0)) + String.valueOf(arr1[i].charAt(arr1[i].length()-1)));
-		}
+		System.out.println(var1);
+
+
 
 	}
 }
