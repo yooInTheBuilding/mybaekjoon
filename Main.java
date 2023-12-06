@@ -1,21 +1,33 @@
 package practice_alone;
 import java.io.*;
-import java.util.StringTokenizer;
+
 
 
 public class Main {
 
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		StringTokenizer st;
-
-		int[] arr1 = new int[6];
-		int[] arr2 = {1, 1, 2, 2, 2, 8};
-		String s1 = br.readLine();
-		st = new StringTokenizer(s1);
-		for (int i = 0; i < arr1.length; i++){
-			arr1[i] = arr2[i] - Integer.parseInt(st.nextToken());
-			System.out.print(arr1[i] + " ");
+		int N = Integer.parseInt(br.readLine());
+		String s1 = "";
+		for (int i = 1; i <= N; i++){
+			for (int j = 1; j <= N - i; j++){
+				s1 += " ";
+			}
+			for (int j = 1; j <= 2*i - 1; j++){
+				s1 += "*";
+			}
+			System.out.println(s1);
+			s1 = "";
+		}
+		for (int i = 1; i <= N - 1; i++){
+			for (int j = 1; j <= i; j++){
+				s1 += " ";
+			}
+			for (int j = 1; j <= (2 * N - 1) - (2 * i); j++){
+				s1 += "*";
+			}
+			System.out.println(s1);
+			s1 = "";
 		}
 
 	}
