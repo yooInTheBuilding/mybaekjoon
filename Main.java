@@ -7,29 +7,31 @@ public class Main {
 
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
 		String s1 = br.readLine();
-		char[] arr1 = new char[s1.length()];
-		boolean[] arr2 = new boolean[(arr1.length - (arr1.length % 2))/2];
+		String s2 = s1.toUpperCase();
+		int[] arr1 = new int[26];
+		for (int i = 0; i < s2.length(); i++){
+			arr1[s2.charAt(i)-'A']++;
+		}
+		int max = arr1[0];
 		int check = 0;
+		String checkA = null;
 		for (int i = 0; i < arr1.length; i++){
-			arr1[i] = s1.charAt(i);
-		}
-		for (int i = 0; i < (arr1.length - (arr1.length % 2))/2; i++){
-			if(s1.charAt(i) == s1.charAt(arr1.length - 1 - i)){
-				arr2[i] = true;
-			}else {
-				arr2[i] = false;
+			if (max < arr1[i]){
+				max = arr1[i];
 			}
 		}
-		for (int i = 0; i < arr2.length; i++){
-			if (!arr2[i]){
+		for (int i = 0; i < arr1.length; i++){
+			if (max == arr1[i]){
 				check++;
+				checkA = String.valueOf((char) (i + 'A'));
 			}
 		}
-		if (check == 0){
-			System.out.println(1);
+		if (check == 1){
+			System.out.println(checkA);
 		}else {
-			System.out.println(0);
+			System.out.println("?");
 		}
 
 
