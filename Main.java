@@ -9,28 +9,26 @@ public class Main {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st;
 
-		String s1 = br.readLine();
-		st = new StringTokenizer(s1);
-		int[] arr1 = new int[8];
-		for (int i = 0; i < arr1.length; i++){
-			arr1[i] = Integer.parseInt(st.nextToken());
+		int T = Integer.parseInt(br.readLine());
+		String[] strings1 = new String[T];
+		for (int i = 0; i < T; i++){
+			strings1[i] = br.readLine();
 		}
-		int ascend = 0;
-		int descend = 0;
-		for (int i = 1; i < arr1.length; i++){
-			if (arr1[i] - arr1[i-1] == 1){
-				ascend++;
-			} else if (arr1[i] - arr1[i-1] == -1) {
-				descend++;
+		int sum = 0;
+		String check = null;
+		for(int i = 0; i < strings1.length; i++){
+			st = new StringTokenizer(strings1[i],"X", false);
+			while (st.hasMoreTokens()) {
+				check = st.nextToken();
+				for (int j = 1; j <= check.length(); j++) {
+					sum += j;
+				}
 			}
+			System.out.println(sum);
+			sum = 0;
 		}
-		if (ascend == arr1.length - 1){
-			System.out.println("ascending");
-		} else if (descend == arr1.length - 1) {
-			System.out.println("descending");
-		}else {
-			System.out.println("mixed");
-		}
+
+
 
 
 	}
