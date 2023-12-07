@@ -10,26 +10,35 @@ public class Main {
 		StringTokenizer st;
 
 		int T = Integer.parseInt(br.readLine());
-		String[] strings1 = new String[T];
+		String s1;
+		int H;
+		int W;
+		int N;
+		int Y;
+		int X;
+		String[] ans = new String[T];
+
 		for (int i = 0; i < T; i++){
-			strings1[i] = br.readLine();
-		}
-		int sum = 0;
-		String check = null;
-		for(int i = 0; i < strings1.length; i++){
-			st = new StringTokenizer(strings1[i],"X", false);
-			while (st.hasMoreTokens()) {
-				check = st.nextToken();
-				for (int j = 1; j <= check.length(); j++) {
-					sum += j;
-				}
+			s1 = br.readLine();
+			st = new StringTokenizer(s1);
+			H = Integer.parseInt(st.nextToken());
+			W = Integer.parseInt(st.nextToken());
+			N = Integer.parseInt(st.nextToken());
+			if (N % H != 0){
+				Y = N % H;
+				X = (N / H) + 1;
+			}else {
+				Y = H;
+				X = N / H;
 			}
-			System.out.println(sum);
-			sum = 0;
+			if (X < 10){
+				ans[i] = Y + "0" + X;
+			}else {
+				ans[i] = Y + Integer.toString(X);
+			}
 		}
-
-
-
-
+		for (int i = 0; i < T; i++){
+			System.out.println(ans[i]);
+		}
 	}
 }
