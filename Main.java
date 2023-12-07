@@ -7,21 +7,37 @@ public class Main {
 
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-
-		String s1 = br.readLine();
-		char[] arr1 = new char[s1.length()];
-		String s2 = "";
-		for (int i = 0; i < arr1.length; i++){
-			arr1[i] = (s1.charAt(i));
-			if (arr1[i] < 97){
-				arr1[i] += 32;
-			}else {
-				arr1[i] -= 32;
+		double[][] grade = new double[4][3];
+		for (int i = 0; i < 4; i++){
+			for (int j = 0; j < 3; j++){
+				grade[i][j] = 3.7 + (0.3 * (2 - j)) - i;
 			}
 		}
-		for (int i = 0; i < arr1.length; i++){
-			s2 += arr1[i];
+		String[][] gradeS = new String[4][3];
+		String sign = null;
+		for (int i = 0; i < 4; i++){
+			for (int j = 0; j < 3; j++){
+				if (j == 0){
+					sign = "+";
+				} else if (j == 1) {
+					sign = "0";
+				}else {
+					sign = "-";
+				}
+				gradeS[i][j] = (char)(65 + i) + sign;
+			}
 		}
-		System.out.println(s2);
+		String s1 = br.readLine();
+		for (int i = 0; i < 4; i++){
+			for (int j = 0; j < 3; j++){
+				if (s1.equals(gradeS[i][j])){
+					System.out.println(grade[i][j]);
+				}
+			}
+		}
+		if (s1.equals("F")){
+			System.out.println("0.0");
+		}
+
 	}
 }
