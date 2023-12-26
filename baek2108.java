@@ -1,40 +1,53 @@
 package practice_alone;
 
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Arrays;
 
 public class baek2108 {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int N = Integer.parseInt(br.readLine());
-        int[] arr = new int[N];
-        for (int i = 0; i < N; i++){
-            arr[i] = Integer.parseInt(br.readLine());
-        }
-        Arrays.sort(arr);
+        int[] arr = new int[8001];
         int sum = 0;
-        int cnt = 1;
-        int cntMax = 0;
-        int cntNum = 0;
-        for (int i = 0; i < arr.length; i++){
-            sum += arr[i];
-            if (i >= 1){
-                if (arr[i] == arr[i - 1]){
-                    cnt++;
-                }else {
-                    cnt = 1;
+        int max = Integer.MIN_VALUE;
+        int min = Integer.MAX_VALUE;
+        int center = 10000;
+        int often = 10000;
+        for (int i = 0; i < N; i++){
+            int var1 = Integer.parseInt(br.readLine());
+            sum += var1;
+            arr[var1 + 4000]++;
+            if (max < var1){
+                max = var1;
+            }
+            if (min > var1){
+                min = var1;
+            }
+        }
+        int cnt = 0;
+        int oftenMax = 0;
+        boolean check = false;
+        for (int i = min + 4000; i <= max + 4000; i++){
+            if (arr[i] > 0){
+                if (cnt < (N + 1) / 2){
+                    cnt += arr[i];
+                    center = i - 4000;
+                }
+                if (oftenMax < arr[i]){
+                    oftenMax = arr[i];
+                    often = i - 4000;
+                    check = true;
+                } else if (oftenMax == arr[i] && check == true) {
+                    often = i - 4000;
+                    check = false;
                 }
             }
-            if (cnt > cntMax){
-                cntMax = cnt;
-                cntNum = arr[i];
-            }
         }
-        System.out.println(sum / N);
-        System.out.println(arr[(N / 2)]);
-        System.out.println(cntNum);
-        System.out.println(arr[N - 1] - arr[0]);
+        System.out.println((int)Math.round((double) sum / N));
+        System.out.println(center);
+        System.out.println(often);
+        System.out.println(max - min);
     }
 }
