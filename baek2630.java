@@ -3,68 +3,48 @@ package practice_alone;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.StringTokenizer;
 
 public class baek2630 {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        int N = Integer.parseInt(br.readLine());
-        int[][] paper = new int[N][N];
-        StringTokenizer st;
-        for (int i = 0; i < N; i++){
-            st = new StringTokenizer(br.readLine());
-            for (int j = 0; j < N; j++){
-                paper[i][j] = Integer.parseInt(st.nextToken());
+        int n = Integer.parseInt(br.readLine());
+        int[][] paper = new int[n][n];
+        for (int i = 0; i < n; i++){
+            String[] temp = br.readLine().split(" ");
+            for (int j = 0; j < n; j++){
+                paper[i][j] = Integer.parseInt(temp[j]);
             }
         }
-        System.out.println(cut(paper, 0));
-
+        int[] count = new int[2];
+        cut(paper, count, 0, 0, n);
+        System.out.println(count[0]);
+        System.out.println(count[1]);
     }
-    static int cut(int[][] paper, int cnt){
-            int[][] paper1 = new int[paper.length / 2][paper.length / 2];
-            int[][] paper2 = new int[paper.length / 2][paper.length / 2];
-            int[][] paper3 = new int[paper.length / 2][paper.length / 2];
-            int[][] paper4 = new int[paper.length / 2][paper.length / 2];
-            boolean bool1 = false;
-            for (int i = 0; i < paper1.length; i++) {
-                for (int j = 0; j < paper1.length; j++) {
-                    paper1[i][j] = paper[i][j];
-                    if (paper1[i][j] == 0) {
-                        bool1 = true;
-                    }
+    public static void cut(int[][] paper, int[] count, int x, int y, int n) {
+        if (n == 1) {
+            count[paper[x][y]]++;
+            return;
+        }
+        boolean bool = true;
+        int temp = paper[x][y];
+        for (int i = x; i < x + n; i++){
+            for (int j = y; j < y + n; j++){
+                if (temp != paper[i][j]){
+                    bool = false;
+                    break;
                 }
             }
-            boolean bool2 = false;
-            for (int i = 0; i < paper2.length; i++) {
-                for (int j = 0; j < paper2.length; j++) {
-                    paper2[i][j] = paper[i][j + paper.length / 2];
-                    if (paper2[i][j] == 0) {
-                        bool2 = true;
-                    }
-                }
+            if (!bool){
+                break;
             }
-            boolean bool3 = false;
-            for (int i = 0; i < paper3.length; i++) {
-                for (int j = 0; j < paper3.length; j++) {
-                    paper3[i][j] = paper[i + paper.length / 2][j];
-                    if (paper3[i][j] == 0) {
-                        bool3 = true;
-                    }
-                }
-            }
-            boolean bool4 = false;
-            for (int i = 0; i < paper4.length; i++) {
-                for (int j = 0; j < paper4.length; j++) {
-                    paper4[i][j] = paper[i + paper.length / 2][j + paper.length / 2];
-                    if (paper4[i][j] == 0) {
-                        bool4 = true;
-                    }
-                }
-            }
-            cnt += cut(paper1, cnt);
-            cnt += cut(paper2, cnt);
-            cnt += cut(paper3, cnt);
-            cnt += cut(paper4, cnt);
-            return cnt;
+        }
+        if (bool){
+            count[temp]++;
+        }else {
+            cut(paper, count, x, y, n / 2);
+            cut(paper, count, x + n / 2, y, n / 2);
+            cut(paper, count, x, y + n / 2, n / 2);
+            cut(paper, count, x + n / 2, y + n / 2, n / 2);
+        }
     }
 }
